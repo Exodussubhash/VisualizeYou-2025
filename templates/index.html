@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+    <style>
+        .container {
+            display: flex;
+        }
+        .box {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #input-box {
+            background-color: #f0f0f0;
+        }
+        #output-box {
+            background-color: #e8e8e8;
+        }
+        .hidden {
+            display: none;
+        }
+        .visible {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" id="input-box">
+            <h2>Upload Photo</h2>
+            <form id = "upload-form" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" id="file-input" accept="image/*"><br><br>
+                <img id="preview" alt="Image Preview" style="max-width: 100%; display: none;"><br><br>
+                {% if file_url %}
+                    <img src="{{ file_url }}" alt="Uploaded Image" style="max-width: 100%;"><br><br>
+                {% endif %}
+                <button type="button" onclick="toggleInput('color-div')">Change Shirt Color</button>
+                <div id="color-div" class="hidden">
+                    <input type="text" name="color" placeholder="Enter shirt color">
+                    <button type="submit" name="change_color">Submit</button>
+                </div><br><br>
+                <button type="button" onclick="toggleInput('profession-div')">See Me As</button>
+                <div id="profession-div" class="hidden">
+                    <input type="text" name="profession" placeholder="Enter profession">
+                    <button type="submit" name="see_me_as">Submit</button>
+                </div><br><br>
+                <button type="button" onclick="toggleInput('mars-div')">Mars Visualize</button>
+                <div id="mars-div" class="hidden">
+                    <input type="text" name="mars" placeholder="How you wanna see yourself on Mars?">
+                    <button type="submit" name="mars_visualize">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="box" id="output-box">
+            <h2>Model Output</h2>
+            {% if output %}
+                <p>{{ output }}</p>
+            {% else %}
+                <p>No output yet.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // function showInput(divId) {
+        //     document.getElementById(divId).classList.toggle('hidden');
+        // }
+            document.getElementById('file-input').addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var preview = document.getElementById('preview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function toggleInput(divId) {
+            var element = document.getElementById(divId);
+            element.classList.toggle('visible');
+            element.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
