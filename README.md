@@ -19,7 +19,7 @@ The solution is deployed on **Google Cloud Platform (GCP)** and consists of the 
 - **Vertex AI Services**  
   Utilizes **Vertex AI’s generative models ( Gemini 2.0)** to create personalized images based on the uploaded photos and text prompts.
 
-![Architecture](path/to/image)
+![Architecture](/Picture1.jpg)
 
 ## 🌟 Key Features  
 - End-to-end deployment using containerized infrastructure on GCP  
