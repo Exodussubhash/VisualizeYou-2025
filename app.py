@@ -76,8 +76,9 @@ def index():
           print(f'Unable to see file: {e}')
           # pass
 
-    return render_template('index.html', output=output, file_url=file_url, img_data=img_data, mime_type=mime_type)
+    return render_template('index2.html', output=output, file_url=file_url, img_data=img_data, mime_type=mime_type)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=80)
+
 
