@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+        }
+        .container {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+        .box {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+        #input-box {
+            border: 2px solid #007BFF;
+        }
+        #output-box {
+            border: 2px solid #28A745;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #007BFF;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+        .visible {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: calc(100% - 20px);
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #loading {
+            display: none;
+            margin-top: 10px;
+            text-align: center;
+        }
+        #progress-bar {
+            width: 100%;
+            background-color: #ddd;
+        }
+        #bar {
+            width: 0;
+            height: 18px;
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        Personalized AI app
+    </div>
+    <div class="container">
+        <div class="box" id="input-box">
+            <h2>Upload Your Photo</h2>
+            <form id="upload-form" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
+                <input type="file" name="file" id="file-input" accept="image/*"><br>
+                <img id="preview" alt="Image Preview" style="display: none;"><br>
+                {% if file_url %}
+                    <img src="{{ file_url }}" alt="Uploaded Image"><br>
+                {% endif %}
+                <button type="button" onclick="toggleInput('color-div')">Change Shirt Color</button>
+                <div id="color-div" class="hidden">
+                    <input type="text" name="color" placeholder="Enter shirt color">
+                    <button type="submit" name="change_color">Submit</button>
+                </div>
+                <button type="button" onclick="toggleInput('profession-div')">See Me As</button>
+                <div id="profession-div" class="hidden">
+                    <input type="text" name="profession" placeholder="Enter profession">
+                    <button type="submit" name="see_me_as">Submit</button>
+                </div>
+                <button type="button" onclick="toggleInput('mars-div')">Mars Visualize</button>
+                <div id="mars-div" class="hidden">
+                    <input type="text" name="mars" placeholder="How you wanna see yourself on Mars?">
+                    <button type="submit" name="mars_visualize">Submit</button>
+                </div>
+                <button type="button" onclick="toggleInput('anythingelse-div')">Other</button>
+                <div id="anythingelse-div" class="hidden">
+                    <input type="text" name="else" placeholder="How you wanna see yourself?">
+                    <button type="submit" name="anythingelse">Submit</button>
+                </div>
+            </form>
+            <div id="loading">
+                Loading...
+                <div id="progress-bar">
+                    <div id="bar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box" id="output-box">
+            <h2>Model Output</h2>
+            {% if img_data %}
+                <img src="data:{{ mime_type }};base64,{{ img_data }}" alt="Output Image">
+            {% endif %}
+            {% if output %}
+                <p>{{ output }}</p>
+            {% else %}
+                <p>See Yourself Soon..</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('file-input').addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var preview = document.getElementById('preview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function toggleInput(divId) {
+            var element = document.getElementById(divId);
+            element.classList.toggle('visible');
+            element.classList.toggle('hidden');
+        }
+
+        function showLoading() {
+            var loadingDiv = document.getElementById('loading');
+            var bar = document.getElementById('bar');
+            loadingDiv.style.display = 'block';
+
+            var width = 1;
+            var interval = setInterval(frame, 100);
+
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(interval);
+                } else {
+                    width++;
+                    bar.style.width = width + '%';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
