@@ -7,7 +7,7 @@ import base64
 def generate(text,img_url):
   client = genai.Client(
       vertexai=True,
-      project="project-1-452610",
+      project="project-1-XXXXX",
       location="global",
   )
 
@@ -84,3 +84,4 @@ def generate(text,img_url):
       print("No image data received.")
 
   return img_binary
+
