@@ -6,7 +6,7 @@ This project is a web-based application that enables users to generate personali
 
 ![Virtual Try On](/Images/Add a jacket.png) - I had this idea before Google came up with it.
 
-![Future Dream](Images/Turning into Pilot.png)
+![Future Dream](/Images/Turning into Pilot.png)
 
 
 ## 🏗️ Architecture Overview  
