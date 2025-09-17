@@ -1,10 +1,12 @@
-# AI-Powered User Image Visualization and Motivation (Visualize YOu) 
+# AI-Powered User Image Visualization and Motivation (Visualize You) 
 **Powered by Google Cloud Platform**
 
 ## 🚀 Overview  
 This project is a web-based application that enables users to generate personalized, AI-powered images based on their uploaded photos and textual prompts. It combines generative AI with cloud infrastructure to help users **visualize their dreams, aspirations, or future selves**.
 
-![Application View](/Picture2.png)
+![Virtual Try On](/Images/Add a jacket.png) - I had this idea before Google came up with it.
+
+![Future Dream](Images/Turning into Pilot.png)
 
 
 ## 🏗️ Architecture Overview  
