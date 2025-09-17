@@ -4,8 +4,8 @@
 ## 🚀 Overview  
 This project is a web-based application that enables users to generate personalized, AI-powered images based on their uploaded photos and textual prompts. It combines generative AI with cloud infrastructure to help users **visualize their dreams, aspirations, or future selves**.
 
-![Virtual Try On](images/Add%20a%20jacket.png) - I had this idea before Google came up with it.
-![Future Dream](images/Turning%20into%20Pilot.png) 
+![Virtual Try On](Images/Add%20a%20jacket.png) - I had this idea before Google came up with it.
+![Future Dream](Images/Turning%20into%20Pilot.png) 
 
 ## 🏗️ Architecture Overview  
 The solution is deployed on **Google Cloud Platform (GCP)** and consists of the following core components:
